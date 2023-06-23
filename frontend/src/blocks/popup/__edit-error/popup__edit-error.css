@@ -1,0 +1,21 @@
+.popup__edit-error {
+    display: block;
+    opacity: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FF0000;
+    margin: 0 36px 0;
+    box-sizing: border-box;
+    min-height: 28px;
+   /* width: 358px; */
+}
+
+@media (max-width: 900px) {
+    .popup__edir-error {
+      width: 238px;
+      margin: 0 22px 0;
+    }
+  } 

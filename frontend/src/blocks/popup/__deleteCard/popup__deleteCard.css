@@ -1,0 +1,8 @@
+.popup__deleteCard {
+    margin: 8px 36px 36px;
+  }
+  @media (max-width: 900px) {
+    .popup__deleteCard {
+      margin: 5px 22px 25px;
+    }
+  } 
