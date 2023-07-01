@@ -102,6 +102,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getUserInfo = (req, res, next) => {
   const userId = req.user._id;
+  console.log('login');
   User.findById(userId)
     .then((user) => res.send(user))
     .catch(next);

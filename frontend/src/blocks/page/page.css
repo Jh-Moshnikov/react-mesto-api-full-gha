@@ -1,0 +1,12 @@
+.page {
+    max-width: 880px;
+    margin: 0 auto 0;
+   /* border: 1px solid red; */
+   font-family: 'Inter', 'Arial', sans-serif;
+   color: white;
+}
+@media (max-width: 600px) {
+    .page {
+        max-width: 320px;
+    }
+  } 
