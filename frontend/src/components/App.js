@@ -187,22 +187,6 @@ function App() {
       console.warn(e)
     }
   }
-  /* const checkToken = async () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setJwt(token);
-      try {
-        const data = await auth(token);
-        setCurrentUser(data);
-        setUserEmail(data.email);
-        setIsLoggedIn(true);
-        navigate("/");
-      } catch (e) {
-        console.warn(e);
-        setIsLoggedIn(false);
-      }
-    }
-  };    */
 
 
   useEffect(() => {
