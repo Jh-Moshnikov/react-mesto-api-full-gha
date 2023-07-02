@@ -4,7 +4,7 @@ const NotFound = require('../utils/errors/notFound');
 const Forbidden = require('../utils/errors/forbidden');
 
 module.exports.getCards = (req, res, next) => {
-  Card.find({})
+  Card.find()
     .then((cards) => res.send(cards))
     .catch(next);
 };

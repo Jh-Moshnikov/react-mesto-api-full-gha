@@ -2,10 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import Card from "./Card";
 import CurrentUserContext from "../context/CurrentUserContext";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, cards, onCardDelete }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, cards, onCardDelete, props }) {
 
     const profileContext = useContext(CurrentUserContext);
-   
+
     return (
         <main className="content">
             <section className="profile">
@@ -24,9 +24,9 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
                     <Card
                         onCardClick={onCardClick}
                         card={card}
-                        key={card._id}
+                        key={card?._id}
                         onCardLike={onCardLike}
-                        likesCount={card.likes.length}
+                        likesCount={card?.likes?.length}
                         onCardDelete={onCardDelete}
 
                     />

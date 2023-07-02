@@ -32,7 +32,7 @@ function App() {
   /* const [error, setError] = useState(''); для будущей реализации сообщений об ошибке */
   const [jwt, setJwt] = useState('');
   const navigate = useNavigate();
- // const history = useHistory();
+  // const history = useHistory();
 
 
 
@@ -139,9 +139,9 @@ function App() {
 
 
   const handleCardLike = async (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => (i._id || i) === currentUser._id);
     try {
-      const resChangeLikeStatus = await api.changeLikeCardStatus(card, !isLiked);
+      const { resChangeLikeStatus } = await api.changeLikeCardStatus(card, !isLiked);
       setCards((state) => state.map((c) => c._id === card._id ? resChangeLikeStatus : c));
     } catch (error) {
       console.warn(error);
@@ -180,24 +180,39 @@ function App() {
 
   const handleAddPlaceSubmit = async (obj) => {
     try {
-      const { newCard } = await api.addNewCard(obj);
+      const newCard = await api.addNewCard(obj);
       setCards([newCard, ...cards]);
       closeAllPopups();
     } catch (e) {
       console.warn(e)
     }
   }
-
+  /* const checkToken = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setJwt(token);
+      try {
+        const data = await auth(token);
+        setCurrentUser(data);
+        setUserEmail(data.email);
+        setIsLoggedIn(true);
+        navigate("/");
+      } catch (e) {
+        console.warn(e);
+        setIsLoggedIn(false);
+      }
+    }
+  };    */
 
 
   useEffect(() => {
+    checkToken();
     api.getInitialCards()
       .then((cardsData) => {
         setCards(cardsData);
-
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [isLoggedIn]);
 
 
   return (

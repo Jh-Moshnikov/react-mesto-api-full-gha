@@ -13,7 +13,7 @@ class Api {
     }
 
     getUserInfo() {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/users/me`, {
            // method: "GET",
             headers: {
@@ -26,9 +26,9 @@ class Api {
     }
 
     getInitialCards() {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards`, {
-            method: "GET",
+          //  method: "GET",
             headers: {
                 "content-type": "application/json",
                 authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ class Api {
     }
 
     setUserInfo(user) {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -54,7 +54,7 @@ class Api {
 
 
     addNewCard(data) {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
             headers: {
@@ -77,7 +77,7 @@ class Api {
     }
 
     changeAvatar(data) {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
             headers: {
@@ -91,7 +91,7 @@ class Api {
     }
 
     like(id) {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: "PUT",
             headers: {
@@ -120,5 +120,5 @@ class Api {
 }
 
 export const api = new Api({
-    baseUrl: "https://localhost:3001",
+    baseUrl: "http://localhost:3001",
 })
