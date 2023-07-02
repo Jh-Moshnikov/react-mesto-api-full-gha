@@ -6,6 +6,8 @@ const BadRequest = require('../utils/errors/badRequest');
 const ConflictError = require('../utils/errors/conflictError');
 const NotFound = require('../utils/errors/notFound');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send(users))
@@ -90,9 +92,9 @@ module.exports.updateAvatar = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findUserByCredentials(email, password)
+  return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
         expiresIn: '7d',
       });
       res.send({ token });
@@ -102,7 +104,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getUserInfo = (req, res, next) => {
   const userId = req.user._id;
-  console.log('login');
+
   User.findById(userId)
     .then((user) => res.send(user))
     .catch(next);

@@ -34,13 +34,15 @@ export const login = (email, password) => {
         .then(getResponse)
 }
 
-export const auth = (token) => {
+export const auth = () => {
+    const token = localStorage.getItem("jwt");
+    console.log('ткен фронта reg 39');
+    console.log(token);
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${token}`
-        },
+            'authorization': `Bearer ${token}`}
     })
         .then(getResponse)
 }

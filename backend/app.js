@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -37,12 +38,14 @@ app.use(errors());
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
-  console.log('error tut');
+  console.log('error app 40 общая ф-ция ошибок');
+  console.log(err);
   res.status(statusCode).send({
     message: statusCode === 500
       ? 'На сервере произошла ошибка'
       : message,
   });
+  console.log('оштбка в апп 46 общая ф-ция ошибкок');
   next();
 });
 
