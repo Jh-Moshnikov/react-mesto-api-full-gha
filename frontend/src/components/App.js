@@ -30,7 +30,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   /* const [error, setError] = useState(''); для будущей реализации сообщений об ошибке */
+  const [jwt, setJwt] = useState('');
   const navigate = useNavigate();
+ // const history = useHistory();
 
 
 
@@ -53,7 +55,7 @@ function App() {
   const handleLogin = async (email, password) => {
     try {
       const { token } = await login(email, password);
-      const { data } = await auth(token);
+      const data = await auth(token);
       setUserEmail(data.email);
       setIsLoggedIn(true);
       localStorage.setItem('token', token);
@@ -70,8 +72,10 @@ function App() {
   const checkToken = async () => {
     const token = localStorage.getItem('token');
     if (token) {
+      setJwt(token);
       try {
-        const { data } = await auth(token);
+        const data = await auth(token);
+        setCurrentUser(data);
         setUserEmail(data.email);
         setIsLoggedIn(true);
         navigate("/");
@@ -86,7 +90,7 @@ function App() {
   useEffect(() => {
     checkToken();
 
-  }, [])
+  }, [isLoggedIn, jwt])
 
 
 
@@ -176,7 +180,7 @@ function App() {
 
   const handleAddPlaceSubmit = async (obj) => {
     try {
-      const newCard = await api.addNewCard(obj);
+      const { newCard } = await api.addNewCard(obj);
       setCards([newCard, ...cards]);
       closeAllPopups();
     } catch (e) {
