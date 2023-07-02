@@ -24,7 +24,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
                     <Card
                         onCardClick={onCardClick}
                         card={card}
-                        key={card?._id}
+                        key={card._id}
                         onCardLike={onCardLike}
                         likesCount={card?.likes?.length}
                         onCardDelete={onCardDelete}

@@ -66,7 +66,7 @@ class Api {
     }
 
     deleteCard(id) {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: "DELETE",
             headers: {
@@ -102,7 +102,7 @@ class Api {
     }
 
     deletelike(id) {
-        const token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: "DELETE",
             headers: {
