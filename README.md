@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 62.84.120.164
+IP <ipv4> 62.84.120.164
 
 Frontend https://mesto-front.nomoreparties.sbs
 
