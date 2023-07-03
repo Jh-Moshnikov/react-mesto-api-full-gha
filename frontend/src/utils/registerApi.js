@@ -1,4 +1,4 @@
- const BASE_URL = 'http://localhost:3001';
+ const BASE_URL = 'https://mesto-back.nomoreparties.sbs';
 
 const getResponse = (res) => {
     if (res.ok) {
@@ -39,7 +39,7 @@ export const auth = (token) => {
    // const token = localStorage.getItem("jwt");
     console.log('ткен фронта reg 39');
     // eslint-disable-next-line no-sequences
-    return console.log('регистр аип 40'), fetch('http://localhost:3001/users/me', {
+    return console.log('регистр аип 40'), fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
